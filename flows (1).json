@@ -1,0 +1,764 @@
+[
+    {
+        "id": "77e7a8ab96338045",
+        "type": "debug",
+        "z": "4c12878d4a05f574",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 600,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "30af82f60c1da2b7",
+        "type": "http request",
+        "z": "4c12878d4a05f574",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "https://api.openweathermap.org/data/2.5/weather?q=yokohama&appid=a669c7581a465a7a7c6ca5cea61e378f&units=metric",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 190,
+        "y": 140,
+        "wires": [
+            [
+                "31baa6973d7e8fc4"
+            ]
+        ]
+    },
+    {
+        "id": "2853bb9b56d612bf",
+        "type": "ui_gauge",
+        "z": "4c12878d4a05f574",
+        "name": "",
+        "group": "165fb4abfddf3008",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Temperatura",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#d79537",
+            "#ea9e1a",
+            "#ea9648"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 610,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "693154bf31d91c3f",
+        "type": "change",
+        "z": "4c12878d4a05f574",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.main.temp",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 400,
+        "y": 220,
+        "wires": [
+            [
+                "77e7a8ab96338045",
+                "2853bb9b56d612bf"
+            ]
+        ]
+    },
+    {
+        "id": "a1d546f6efb49c86",
+        "type": "inject",
+        "z": "4c12878d4a05f574",
+        "name": "sensores Cidade de Yokohama (Japão)",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 290,
+        "y": 60,
+        "wires": [
+            [
+                "30af82f60c1da2b7"
+            ]
+        ]
+    },
+    {
+        "id": "31baa6973d7e8fc4",
+        "type": "json",
+        "z": "4c12878d4a05f574",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 190,
+        "y": 220,
+        "wires": [
+            [
+                "693154bf31d91c3f",
+                "18b2e2721aa97c90",
+                "ced89330d5bab922",
+                "f2e5cddceb2ad762",
+                "96e65e9c5ec03e05"
+            ]
+        ]
+    },
+    {
+        "id": "18b2e2721aa97c90",
+        "type": "change",
+        "z": "4c12878d4a05f574",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.main.pressure",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 400,
+        "y": 280,
+        "wires": [
+            [
+                "4a0891a84d3e980d"
+            ]
+        ]
+    },
+    {
+        "id": "ced89330d5bab922",
+        "type": "change",
+        "z": "4c12878d4a05f574",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.main.sea_level",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 400,
+        "y": 340,
+        "wires": [
+            [
+                "9e628fe2ae3afb08"
+            ]
+        ]
+    },
+    {
+        "id": "f2e5cddceb2ad762",
+        "type": "change",
+        "z": "4c12878d4a05f574",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.main.clouds",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 400,
+        "y": 400,
+        "wires": [
+            [
+                "abfb1e7bbcba7e5a"
+            ]
+        ]
+    },
+    {
+        "id": "4a0891a84d3e980d",
+        "type": "ui_gauge",
+        "z": "4c12878d4a05f574",
+        "name": "",
+        "group": "165fb4abfddf3008",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Pressão",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "1500",
+        "colors": [
+            "#00b500",
+            "#65df43",
+            "#eab934"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 600,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "9e628fe2ae3afb08",
+        "type": "ui_gauge",
+        "z": "4c12878d4a05f574",
+        "name": "",
+        "group": "165fb4abfddf3008",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Nível do mar",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "1500",
+        "colors": [
+            "#00b500",
+            "#268ab5",
+            "#519dd6"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 610,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "abfb1e7bbcba7e5a",
+        "type": "ui_gauge",
+        "z": "4c12878d4a05f574",
+        "name": "",
+        "group": "165fb4abfddf3008",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Nuvens",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "1500",
+        "colors": [
+            "#98fbeb",
+            "#9fd3e5",
+            "#57c1bf"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 600,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "ed225214ca7136b5",
+        "type": "ui_gauge",
+        "z": "4c12878d4a05f574",
+        "name": "",
+        "group": "165fb4abfddf3008",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Nivel da terra",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "1500",
+        "colors": [
+            "#00b500",
+            "#756048",
+            "#c99b83"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 610,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "96e65e9c5ec03e05",
+        "type": "change",
+        "z": "4c12878d4a05f574",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.main.grnd_level",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 400,
+        "y": 460,
+        "wires": [
+            [
+                "ed225214ca7136b5"
+            ]
+        ]
+    },
+    {
+        "id": "515ec2cd983b61ac",
+        "type": "debug",
+        "z": "4c12878d4a05f574",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1240,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "1566c0238f3a6ec8",
+        "type": "http request",
+        "z": "4c12878d4a05f574",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "https://api.openweathermap.org/data/2.5/weather?q=lapaz&appid=a669c7581a465a7a7c6ca5cea61e378f&units=metric",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 830,
+        "y": 140,
+        "wires": [
+            [
+                "1e751e18b49f2a40"
+            ]
+        ]
+    },
+    {
+        "id": "f2a625460be3fe1f",
+        "type": "change",
+        "z": "4c12878d4a05f574",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.main.temp",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1040,
+        "y": 220,
+        "wires": [
+            [
+                "515ec2cd983b61ac",
+                "de6ce90e74738261"
+            ]
+        ]
+    },
+    {
+        "id": "e9d0a22edb992cc7",
+        "type": "inject",
+        "z": "4c12878d4a05f574",
+        "name": "sensores Cidade de La Paz (México)",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 900,
+        "y": 60,
+        "wires": [
+            [
+                "1566c0238f3a6ec8"
+            ]
+        ]
+    },
+    {
+        "id": "1e751e18b49f2a40",
+        "type": "json",
+        "z": "4c12878d4a05f574",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 830,
+        "y": 220,
+        "wires": [
+            [
+                "f2a625460be3fe1f",
+                "52e7b8b128659397",
+                "14cf3581fe855ead",
+                "a42fdc75614a62d9",
+                "bc07e999f9d0336c"
+            ]
+        ]
+    },
+    {
+        "id": "52e7b8b128659397",
+        "type": "change",
+        "z": "4c12878d4a05f574",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.main.pressure",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1040,
+        "y": 280,
+        "wires": [
+            [
+                "88f8b34518bd412c"
+            ]
+        ]
+    },
+    {
+        "id": "14cf3581fe855ead",
+        "type": "change",
+        "z": "4c12878d4a05f574",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.main.sea_level",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1040,
+        "y": 340,
+        "wires": [
+            [
+                "53822befde931079"
+            ]
+        ]
+    },
+    {
+        "id": "a42fdc75614a62d9",
+        "type": "change",
+        "z": "4c12878d4a05f574",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.main.clouds",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1040,
+        "y": 400,
+        "wires": [
+            [
+                "2beb4320da2d526a"
+            ]
+        ]
+    },
+    {
+        "id": "bc07e999f9d0336c",
+        "type": "change",
+        "z": "4c12878d4a05f574",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.main.grnd_level",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1040,
+        "y": 460,
+        "wires": [
+            [
+                "d7fdefd8d93e9d2d"
+            ]
+        ]
+    },
+    {
+        "id": "de6ce90e74738261",
+        "type": "ui_gauge",
+        "z": "4c12878d4a05f574",
+        "name": "",
+        "group": "e67a8d6c5cbac01c",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Temperatura",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#d79537",
+            "#ea9e1a",
+            "#ea9648"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 1270,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "88f8b34518bd412c",
+        "type": "ui_gauge",
+        "z": "4c12878d4a05f574",
+        "name": "",
+        "group": "e67a8d6c5cbac01c",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Pressão",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "1500",
+        "colors": [
+            "#00b500",
+            "#65df43",
+            "#eab934"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 1260,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "53822befde931079",
+        "type": "ui_gauge",
+        "z": "4c12878d4a05f574",
+        "name": "",
+        "group": "e67a8d6c5cbac01c",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Nível do mar",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "1500",
+        "colors": [
+            "#00b500",
+            "#268ab5",
+            "#519dd6"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 1270,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "2beb4320da2d526a",
+        "type": "ui_gauge",
+        "z": "4c12878d4a05f574",
+        "name": "",
+        "group": "e67a8d6c5cbac01c",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Nuvens",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "1500",
+        "colors": [
+            "#98fbeb",
+            "#9fd3e5",
+            "#57c1bf"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 1260,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "d7fdefd8d93e9d2d",
+        "type": "ui_gauge",
+        "z": "4c12878d4a05f574",
+        "name": "",
+        "group": "e67a8d6c5cbac01c",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Nivel da terra",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "1500",
+        "colors": [
+            "#00b500",
+            "#756048",
+            "#c99b83"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 1270,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "165fb4abfddf3008",
+        "type": "ui_group",
+        "name": "Cidade de Yokohama ",
+        "tab": "6141fb3a48683be0",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "e67a8d6c5cbac01c",
+        "type": "ui_group",
+        "name": "Cidade de La Paz",
+        "tab": "6141fb3a48683be0",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "6141fb3a48683be0",
+        "type": "ui_tab",
+        "name": "Edge CP - Sensores ",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
