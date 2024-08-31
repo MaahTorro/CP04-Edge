@@ -1,0 +1,49 @@
+[
+    {
+        "id": "2853bb9b56d612bf",
+        "type": "ui_gauge",
+        "z": "4c12878d4a05f574",
+        "name": "",
+        "group": "165fb4abfddf3008",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Temperatura",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#d79537",
+            "#ea9e1a",
+            "#ea9648"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 610,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "165fb4abfddf3008",
+        "type": "ui_group",
+        "name": "Cidade de Yokohama ",
+        "tab": "6141fb3a48683be0",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "6141fb3a48683be0",
+        "type": "ui_tab",
+        "name": "Edge CP - Sensores ",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
